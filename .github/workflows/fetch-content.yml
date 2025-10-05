@@ -1,26 +1,37 @@
-name: Fetch content
+name: Fetch Sheet & Images
+
+# Only manual trigger
 on:
-  schedule:
-    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
-  fetch:
+  build-content:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      # 1️⃣ Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-      - name: Run fetch script
+          python-version: '3.11'
+
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: pip install requests
+
+      # 4️⃣ Run the fetch_data.py script
+      - name: Fetch Sheet & Download Images
+        run: python fetch_data.py
+
+      # 5️⃣ Commit updated JSON & images
+      - name: Commit changes
         run: |
-          python fetch_data.py
-      - name: Commit generated content
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: github-actions[bot]
-          author_email: github-actions[bot]@users.noreply.github.com
-          message: "chore: update generated content"
-          add: "data.json, images/**"
-          push: true
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data.json images/
+          git commit -m "Update sheet data and images" || echo "No changes to commit"
+          git push
