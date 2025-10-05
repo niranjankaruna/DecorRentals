@@ -1,231 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyStore - Luxury Decoration Rentals</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-/* Carousel Animation */
-.carousel img {
-  display: none;
-  transition: opacity 0.4s ease;
-}
-.carousel img.active {
-  display: block;
-  opacity: 1;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyStore - Luxury Decoration Rentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Carousel Animation */
+      .carousel img {
+        display: none;
+        transition: opacity 0.4s ease;
+      }
 
-/* Category Card Hover Effects */
-.category-card img {
-  transition: transform 0.5s ease, filter 0.5s ease;
-}
-.category-card:hover img {
-  transform: scale(1.08);
-  filter: brightness(0.7);
-}
-.category-card h3 {
-  transition: transform 0.4s ease, text-shadow 0.4s ease;
-}
-.category-card:hover h3 {
-  transform: scale(1.1);
-  text-shadow: 0 0 10px rgba(255,255,255,0.8);
-}
+      .carousel img.active {
+        display: block;
+        opacity: 1;
+      }
+    </style>
+  </head>
 
-/* Luxury Gradient Overlay Animation */
-.category-card .overlay-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 0, 150, 0.25), rgba(0, 200, 255, 0.25));
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 5;
-  border-radius: inherit;
-}
-.category-card:hover .overlay-gradient {
-  opacity: 1;
-  transform: scale(1.05);
-}
-</style>
-</head>
-<body class="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 font-sans flex flex-col min-h-screen">
+  <body
+    class="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 font-sans flex flex-col min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav
+      class="bg-gradient-to-r from-purple-700 to-pink-500 text-white shadow-lg sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto flex justify-between items-center p-4 flex-wrap"
+      >
+        <div class="text-2xl font-extrabold tracking-widest">MyStore</div>
 
-<!-- Navbar -->
-<nav class="bg-gradient-to-r from-purple-700 to-pink-500 text-white shadow-lg sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center p-4 flex-wrap">
-    <div class="text-2xl font-extrabold tracking-widest">MyStore</div>
-    
-    <!-- Hamburger -->
-    <button id="hamburgerBtn" class="md:hidden text-white text-2xl focus:outline-none">☰</button>
+        <!-- Hamburger -->
+        <button
+          id="hamburgerBtn"
+          class="md:hidden text-white text-2xl focus:outline-none"
+        >
+          ☰
+        </button>
 
-    <!-- Menu -->
-    <ul id="menu" class="hidden md:flex flex-wrap justify-center gap-3 md:gap-6 mt-2 md:mt-0 w-full md:w-auto">
-      <li class="relative group cursor-pointer px-3 py-2 rounded-lg hover:bg-white/20 transition">
-        Events
-        <ul class="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-          <div id="eventsDropdown"></div>
+        <!-- Menu -->
+        <ul
+          id="menu"
+          class="hidden md:flex flex-wrap justify-center gap-3 md:gap-6 mt-2 md:mt-0 w-full md:w-auto"
+        >
+          <li
+            class="relative group cursor-pointer px-3 py-2 rounded-lg hover:bg-white/20 transition"
+          >
+            Events
+            <ul
+              class="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"
+            >
+              <div id="eventsDropdown"></div>
+            </ul>
+          </li>
+
+          <li
+            class="relative group cursor-pointer px-3 py-2 rounded-lg hover:bg-white/20 transition"
+          >
+            Categories
+            <ul
+              class="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"
+            >
+              <div id="categoriesDropdown"></div>
+            </ul>
+          </li>
         </ul>
-      </li>
-      <li class="relative group cursor-pointer px-3 py-2 rounded-lg hover:bg-white/20 transition">
-        Categories
-        <ul class="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-          <div id="categoriesDropdown"></div>
-        </ul>
-      </li>
-    </ul>
-    
-    <button id="backBtn" class="bg-white/20 hover:bg-white/40 text-white px-4 py-2 rounded-xl transition mt-2 md:mt-0">← Back</button>
-  </div>
-</nav>
 
-<!-- Header -->
-<header class="text-center py-16 sm:py-20 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white shadow-lg">
-  <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-wide">Welcome to MyStore</h1>
-  <p class="text-sm sm:text-base md:text-lg opacity-90">Discover exquisite decorations for every event and occasion</p>
-</header>
+        <button
+          id="backBtn"
+          class="bg-white/20 hover:bg-white/40 text-white px-4 py-2 rounded-xl transition mt-2 md:mt-0"
+        >
+          ← Back
+        </button>
+      </div>
+    </nav>
 
-<!-- Grid Content -->
-<main class="flex-grow max-w-7xl mx-auto p-4 sm:p-6 grid gap-4 sm:gap-6 md:gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5" id="contentGrid">
-</main>
+    <!-- Header -->
+    <header
+      class="text-center py-20 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white shadow-lg"
+    >
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-wide"
+      >
+        Welcome to MyStore
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg opacity-90">
+        Discover exquisite decorations for every event and occasion
+      </p>
+    </header>
 
-<!-- Footer -->
-<footer class="bg-gradient-to-r from-purple-700 to-pink-500 text-white text-center py-6 shadow-inner mt-auto">
-  &copy; 2025 MyStore. All rights reserved.
-</footer>
+    <!-- Grid Content -->
+    <main
+      id="contentGrid"
+      class="flex-grow max-w-7xl mx-auto p-4 sm:p-6 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    ></main>
 
-<script>
-const contentGrid = document.getElementById("contentGrid");
-const eventsDropdown = document.getElementById("eventsDropdown");
-const categoriesDropdown = document.getElementById("categoriesDropdown");
-const menu = document.getElementById("menu");
-const hamburgerBtn = document.getElementById("hamburgerBtn");
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-r from-purple-700 to-pink-500 text-white text-center py-6 shadow-inner mt-auto"
+    >
+      &copy; 2025 MyStore. All rights reserved.
+    </footer>
 
-let products = [], categories = [], tags = [];
+    <script>
+      const contentGrid = document.getElementById("contentGrid");
+      const eventsDropdown = document.getElementById("eventsDropdown");
+      const categoriesDropdown = document.getElementById("categoriesDropdown");
+      const menu = document.getElementById("menu");
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
 
-// Hamburger toggle
-hamburgerBtn.addEventListener("click", () => {
-  menu.classList.toggle("hidden");
-});
+      let products = [],
+        categories = [],
+        tags = [];
 
-async function loadData() {
-  try {
-    if (location.protocol === 'file:') {
-      contentGrid.innerHTML = '<p class="text-center text-gray-500">If opened via file://, fetch may fail. Run a local server.</p>';
-      return;
-    }
-    const res = await fetch("data.json");
-    if (!res.ok) throw new Error('Network error');
-    const jsonData = await res.json();
-    products = jsonData.map(item => ({
-      name: item.Name || item.name || "",
-      description: item.Description || item.description || "",
-      price: item.Price || item.price || "",
-      category: Array.isArray(item.Category) && item.Category.length > 0 ? item.Category[0] : (item.Category || ""),
-      tags: Array.isArray(item.Tags) ? item.Tags : (Array.isArray(item.tags) ? item.tags : []),
-      images: Array.isArray(item.ImagesLocal) ? item.ImagesLocal : (Array.isArray(item.images) ? item.images : []),
-      image: item.CategoryImage || "default-category.jpg"
-    }));
-    const categorySet = new Set(products.map(p => p.category).filter(c => c));
-    categories = Array.from(categorySet).map(c => ({ name: c, image: products.find(p=>p.category===c)?.image }));
-    const tagSet = new Set();
-    products.forEach(p => p.tags.forEach(t => tagSet.add(t)));
-    tags = Array.from(tagSet).map(t => ({ name: t }));
-    renderEventsDropdown();
-    renderCategoriesDropdown();
-    renderCategories();
-  } catch(err) {
-    contentGrid.innerHTML = '<p class="text-center text-red-500">Failed to load data.json</p>';
-    console.error(err);
-  }
-}
+      // Hamburger toggle
+      hamburgerBtn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
 
-document.getElementById("backBtn").addEventListener("click", () => renderCategories());
+      async function loadData() {
+        try {
+          if (location.protocol === "file:") {
+            contentGrid.innerHTML =
+              '<p class="text-center text-gray-500">If opened via file://, fetch may fail. Run a local server.</p>';
+            return;
+          }
 
-// Dropdowns
-function renderEventsDropdown() {
-  eventsDropdown.innerHTML = "";
-  tags.forEach(tag => {
-    const li = document.createElement("li");
-    li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-lg";
-    li.textContent = tag.name;
-    li.addEventListener("click", () => renderProductsByEvent(tag.name));
-    eventsDropdown.appendChild(li);
-  });
-}
+          const res = await fetch("data.json");
+          if (!res.ok) throw new Error("Network error");
+          const jsonData = await res.json();
 
-function renderCategoriesDropdown() {
-  categoriesDropdown.innerHTML = "";
-  categories.forEach(cat => {
-    const li = document.createElement("li");
-    li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-lg";
-    li.textContent = cat.name;
-    li.addEventListener("click", () => renderProductsByCategory(cat.name));
-    categoriesDropdown.appendChild(li);
-  });
-}
+          products = jsonData.map((item) => ({
+            name: item.Name || item.name || "",
+            description: item.Description || item.description || "",
+            price: item.Price || item.price || "",
+            category:
+              Array.isArray(item.Category) && item.Category.length > 0
+                ? item.Category[0]
+                : item.Category || "",
+            tags: Array.isArray(item.Tags)
+              ? item.Tags
+              : Array.isArray(item.tags)
+              ? item.tags
+              : [],
+            images: Array.isArray(item.ImagesLocal)
+              ? item.ImagesLocal
+              : Array.isArray(item.images)
+              ? item.images
+              : [],
+          }));
 
-// Landing Page Categories (square cards)
-function renderCategories() {
-  contentGrid.innerHTML = "";
-  categories.forEach((cat)=>{
-    const card = document.createElement("div");
-    card.className = "category-card relative aspect-square rounded-3xl overflow-hidden cursor-pointer shadow-lg transform transition duration-500 hover:shadow-2xl";
+          const categorySet = new Set(
+            products.map((p) => p.category).filter((c) => c)
+          );
+          categories = Array.from(categorySet).map((c) => ({ name: c }));
 
-    const img = document.createElement("img");
-    img.src = cat.image || "default-category.jpg";
-    img.className = "w-full h-full object-cover";
-    card.appendChild(img);
+          const tagSet = new Set();
+          products.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+          tags = Array.from(tagSet).map((t) => ({ name: t }));
 
-    const overlayGradient = document.createElement("div");
-    overlayGradient.className = "overlay-gradient";
-    card.appendChild(overlayGradient);
+          renderEventsDropdown();
+          renderCategoriesDropdown();
+          renderTags();
+        } catch (err) {
+          contentGrid.innerHTML =
+            '<p class="text-center text-red-500">Failed to load data.json</p>';
+          console.error(err);
+        }
+      }
 
-    const overlay = document.createElement("div");
-    overlay.className = "absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/60 via-black/10 to-transparent p-4";
-    const title = document.createElement("h3");
-    title.className = "text-white text-lg sm:text-xl md:text-2xl font-semibold text-center z-10";
-    title.textContent = cat.name;
-    overlay.appendChild(title);
-    card.appendChild(overlay);
+      document
+        .getElementById("backBtn")
+        .addEventListener("click", () => renderTags());
 
-    card.addEventListener("click", () => renderProductsByCategory(cat.name));
-    contentGrid.appendChild(card);
-  });
-}
+      function renderEventsDropdown() {
+        eventsDropdown.innerHTML = "";
+        tags.forEach((tag) => {
+          const li = document.createElement("li");
+          li.className =
+            "px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-lg";
+          li.textContent = tag.name;
+          li.addEventListener("click", () => renderProductsByEvent(tag.name));
+          eventsDropdown.appendChild(li);
+        });
+      }
 
-// Product Rendering
-function renderProductsByCategory(categoryName){
-  contentGrid.innerHTML="";
-  const filtered = products.filter(p=>p.category===categoryName);
-  filtered.forEach(renderProductCard);
-}
-function renderProductCard(p){
-  const card=document.createElement("div");
-  card.className="relative aspect-square bg-white rounded-3xl shadow-2xl overflow-hidden transform transition hover:scale-105";
-  
-  if(p.images.length>0){
-    const carousel=document.createElement("div");
-    carousel.className="carousel relative w-full h-full";
-    p.images.forEach((imgSrc,i)=>{
-      const img=document.createElement("img");
-      img.src=imgSrc;
-      img.className=`w-full h-full object-cover ${i===0?'active':''}`;
-      carousel.appendChild(img);
-    });
-    card.appendChild(carousel);
-  }
+      function renderCategoriesDropdown() {
+        categoriesDropdown.innerHTML = "";
+        categories.forEach((cat) => {
+          const li = document.createElement("li");
+          li.className =
+            "px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-lg";
+          li.textContent = cat.name;
+          li.addEventListener("click", () =>
+            renderProductsByCategory(cat.name)
+          );
+          categoriesDropdown.appendChild(li);
+        });
+      }
 
-  const info=document.createElement("div");
-  info.className="absolute bottom-0 w-full bg-black/50 p-3 text-white";
-  info.innerHTML=`<h3 class='text-sm sm:text-base font-semibold'>${p.name}</h3>
-                  <p class='text-xs sm:text-sm opacity-80'>${p.description}</p>
-                  <p class='text-xs sm:text-sm text-yellow-300 font-bold'>$${p.price}</p>`;
-  card.appendChild(info);
+      function renderTags() {
+        contentGrid.innerHTML = "";
+        tags.forEach((tag, index) => {
+          const card = document.createElement("div");
+          card.className =
+            "bg-white shadow-2xl rounded-3xl p-6 text-center cursor-pointer transform transition hover:scale-105";
 
-  contentGrid.appendChild(card);
-}
+          const h3 = document.createElement("h3");
+          h3.textContent = tag.name;
+          h3.className =
+            "text-lg sm:text-xl font-semibold mb-2 text-purple-700";
 
-loadData();
-</script>
-</body>
+          card.appendChild(h3);
+          contentGrid.appendChild(card);
+          setTimeout(() => card.classList.add("show"), index * 100);
+
+          card.addEventListener("click", () => renderProductsByEvent(tag.name));
+        });
+      }
+
+      function renderProductsByEvent(tagName) {
+        contentGrid.innerHTML = "";
+        const filteredDecor = products.filter(
+          (p) => p.tags.includes(tagName) && p.category === "Decor"
+        );
+        filteredDecor.forEach((p, index) => renderProductCard(p, index));
+
+        const showAllBtn = document.createElement("button");
+        showAllBtn.textContent = "Show All";
+        showAllBtn.className =
+          "mx-auto block mt-6 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition";
+        showAllBtn.addEventListener("click", () =>
+          renderProductsByEventAll(tagName)
+        );
+        contentGrid.appendChild(showAllBtn);
+      }
+
+      function renderProductsByEventAll(tagName) {
+        contentGrid.innerHTML = "";
+        const filtered = products.filter((p) => p.tags.includes(tagName));
+        filtered.forEach((p, index) => renderProductCard(p, index));
+      }
+
+      function renderProductsByCategory(categoryName) {
+        contentGrid.innerHTML = "";
+        const filtered = products.filter((p) => p.category === categoryName);
+        filtered.forEach((p, index) => renderProductCard(p, index));
+      }
+
+      function renderProductCard(p, index) {
+        const card = document.createElement("div");
+        card.className =
+          "bg-white rounded-3xl shadow-2xl overflow-hidden transform transition hover:scale-105";
+
+        if (p.images.length > 0) {
+          const carousel = document.createElement("div");
+          carousel.className = "carousel relative w-full h-48 sm:h-56 md:h-64";
+
+          p.images.forEach((imgSrc, i) => {
+            const img = document.createElement("img");
+            img.src = imgSrc;
+            img.className = `w-full h-full object-cover rounded-t-3xl ${
+              i === 0 ? "active" : ""
+            }`;
+            carousel.appendChild(img);
+          });
+
+          if (p.images.length > 1) {
+            const prevBtn = document.createElement("button");
+            prevBtn.textContent = "<";
+            prevBtn.className =
+              "absolute top-1/2 left-4 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-black font-bold px-3 py-1 rounded-full";
+
+            const nextBtn = document.createElement("button");
+            nextBtn.textContent = ">";
+            nextBtn.className =
+              "absolute top-1/2 right-4 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-black font-bold px-3 py-1 rounded-full";
+
+            let currentIndex = 0;
+
+            prevBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              carousel.children[currentIndex].classList.remove("active");
+              currentIndex =
+                (currentIndex - 1 + p.images.length) % p.images.length;
+              carousel.children[currentIndex].classList.add("active");
+            });
+
+            nextBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              carousel.children[currentIndex].classList.remove("active");
+              currentIndex = (currentIndex + 1) % p.images.length;
+              carousel.children[currentIndex].classList.add("active");
+            });
+
+            carousel.appendChild(prevBtn);
+            carousel.appendChild(nextBtn);
+          }
+
+          card.appendChild(carousel);
+        }
+
+        const content = document.createElement("div");
+        content.className = "p-4 sm:p-5";
+
+        const h3 = document.createElement("h3");
+        h3.textContent = p.name;
+        h3.className =
+          "text-base sm:text-lg md:text-xl font-semibold text-purple-700 mb-2";
+
+        const desc = document.createElement("p");
+        desc.textContent = p.description;
+        desc.className = "text-gray-600 mb-2 text-sm sm:text-base";
+
+        const price = document.createElement("p");
+        price.textContent = "$" + p.price;
+        price.className =
+          "text-purple-600 font-bold mb-2 text-sm sm:text-base";
+
+        const tagsDiv = document.createElement("div");
+        tagsDiv.className = "flex flex-wrap gap-2";
+
+        p.tags.forEach((t) => {
+          const span = document.createElement("span");
+          span.textContent = t;
+          span.className =
+            "bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm font-medium";
+          tagsDiv.appendChild(span);
+        });
+
+        content.appendChild(h3);
+        content.appendChild(desc);
+        content.appendChild(price);
+        content.appendChild(tagsDiv);
+        card.appendChild(content);
+        contentGrid.appendChild(card);
+
+        setTimeout(() => card.classList.add("show"), index * 100);
+
+        if (p.category === "Decor" && p.tags.length > 0) {
+          card.addEventListener("click", () =>
+            renderProductsByDecorTags(p.tags)
+          );
+        }
+      }
+
+      function renderProductsByDecorTags(decorTags) {
+        contentGrid.innerHTML = "";
+        const filtered = products.filter((p) =>
+          p.tags.some((t) => decorTags.includes(t))
+        );
+        filtered.forEach((p, index) => renderProductCard(p, index));
+      }
+
+      loadData();
+    </script>
+  </body>
 </html>
